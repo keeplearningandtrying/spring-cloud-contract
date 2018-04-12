@@ -14,10 +14,10 @@ paths:
       tags:
         - pets
       x-contracts:
-        - testId: 1
-          description: Test List All Pets, No Limit
-        - testId: 2
-          description: Test List All Pets, Limit 5
+        - contractId: 1
+          name: Test List All Pets, No Limit
+        - contractId: 2
+          name: Test List All Pets, Limit 5
       parameters:
         - name: limit
           in: query
@@ -27,9 +27,9 @@ paths:
             type: integer
             format: int32
           x-contracts:
-            - testId: 1
+            - contractId: 1
               default: null
-            - testId: 2
+            - contractId: 2
               default: 5
       responses:
         '200':
@@ -44,11 +44,11 @@ paths:
               schema:
                 $ref: "#/components/schemas/Pets"
           x-contracts:
-            - testId: 1
+            - contractId: 1
                 matchers:
                     path: $.*
                     maxOccurance: 25
-            - testId: 2
+            - contractId: 2
                 matchers:
                     path: $.*
                     maxOccurance: 25
