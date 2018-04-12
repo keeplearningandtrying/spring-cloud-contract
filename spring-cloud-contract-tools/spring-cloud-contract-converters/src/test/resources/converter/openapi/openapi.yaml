@@ -13,6 +13,7 @@ paths:
       operationId: listPets
       tags:
         - pets
+      # Define Contracts
       x-contracts:
         - contractId: 1
           name: Test List All Pets, No Limit
@@ -26,6 +27,7 @@ paths:
           schema:
             type: integer
             format: int32
+          # Define Parameters for Contracts
           x-contracts:
             - contractId: 1
               default: null
@@ -43,6 +45,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/Pets"
+          #Define Expectations for Contracts (expecting 200, application/json response and below conditions)
           x-contracts:
             - contractId: 1
                 matchers:
