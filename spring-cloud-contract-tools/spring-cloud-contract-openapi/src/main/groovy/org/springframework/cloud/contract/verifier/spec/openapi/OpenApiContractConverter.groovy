@@ -12,7 +12,7 @@ import static org.apache.commons.lang3.StringUtils.isNumeric
  * Created by jt on 5/24/18.
  */
 @Slf4j
-class OpenApiContactConverter implements ContractConverter<Collection<PathItem>> {
+class OpenApiContractConverter implements ContractConverter<Collection<PathItem>> {
 
     @Override
     boolean isAccepted(File file) {

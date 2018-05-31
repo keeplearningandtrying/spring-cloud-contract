@@ -1,5 +1,7 @@
 package org.springframework.cloud.contract.verifier.spec.openapi
 
+import org.springframework.cloud.contract.spec.Contract
+import spock.lang.Ignore
 import spock.lang.Specification
 
 
@@ -8,10 +10,10 @@ import spock.lang.Specification
  */
 class OpenApiContactConverterTest extends Specification {
 
-    OpenApiContactConverter contactConverter
+    OpenApiContractConverter contactConverter
 
     void setup() {
-        contactConverter = new OpenApiContactConverter()
+        contactConverter = new OpenApiContractConverter()
     }
 
     def "IsAccepted True"() {
@@ -38,7 +40,7 @@ class OpenApiContactConverterTest extends Specification {
 
     }
 
-    def "ConvertFrom"() {
+    def "ConvertFrom - should not go boom"() {
         given:
         File file = new File('src/test/resources/openapi/openapi.yaml')
         when:
@@ -53,6 +55,21 @@ class OpenApiContactConverterTest extends Specification {
 
     }
 
-    def "ConvertTo"() {
+    @Ignore // not working yet
+    def "Test Should Mark Client As Fraud"() {
+        given:
+        Contract dslContract = DslContracts.shouldMarkClientAsFraud()
+
+        File file = new File('src/test/resources/openapi/fraudservice.yaml')
+        when:
+
+        def result = contactConverter.convertFrom(file)
+
+        Contract openApiContract = result.find {it.name.equalsIgnoreCase("Should Mark Client As Fraud")}
+
+        then:
+        result != null
+        dslContract == openApiContract
+
     }
 }

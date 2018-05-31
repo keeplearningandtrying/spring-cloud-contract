@@ -23,7 +23,7 @@ paths:
       # Define Contracts
       x-contracts:
         - contractId: 1
-          name: Test Loan Amount too much
+          name: Should Mark Client As Fraud
         - contractId: 2
           name: Test Loan Amount okay
         - contractId: 3
