@@ -1,19 +1,25 @@
 package org.springframework.cloud.contract.verifier.spec.openapi
 
 import org.springframework.cloud.contract.spec.Contract
-import spock.lang.Ignore
+import org.springframework.cloud.contract.verifier.converter.YamlContractConverter
 import spock.lang.Specification
-
 
 /**
  * Created by jt on 5/24/18.
  */
 class OpenApiContactConverterTest extends Specification {
 
+    URL contractUrl = OpenApiContactConverterTest.getResource("/yml/contract.yml")
+    File contractFile = new File(contractUrl.toURI())
+    URL contractOA3Url = OpenApiContactConverterTest.getResource("/yml/contract_OA3.yml")
+    File contractOA3File = new File(contractOA3Url.toURI())
+
     OpenApiContractConverter contactConverter
+    YamlContractConverter yamlContractConverter
 
     void setup() {
         contactConverter = new OpenApiContractConverter()
+        yamlContractConverter = new YamlContractConverter()
     }
 
     def "IsAccepted True"() {
@@ -55,21 +61,29 @@ class OpenApiContactConverterTest extends Specification {
 
     }
 
-    @Ignore // not working yet
-    def "Test Should Mark Client As Fraud"() {
-        given:
-        Contract dslContract = DslContracts.shouldMarkClientAsFraud()
 
-        File file = new File('src/test/resources/openapi/fraudservice.yaml')
+    def "Test Yaml Contract"() {
+        given:
+        Contract yamlContract = yamlContractConverter.convertFrom(contractFile).first()
+        Collection<Contract> oa3Contract = contactConverter.convertFrom(contractOA3File)
+
         when:
 
-        def result = contactConverter.convertFrom(file)
 
-        Contract openApiContract = result.find {it.name.equalsIgnoreCase("Should Mark Client As Fraud")}
+        Contract openApiContract = oa3Contract.find { it.name.equalsIgnoreCase("some name") }
 
         then:
-        result != null
-        dslContract == openApiContract
+        openApiContract
+        yamlContract.request.url == openApiContract.request.url
+        yamlContract.request.method == openApiContract.request.method
+        yamlContract.request.cookies == openApiContract.request.cookies
+        yamlContract.request.headers == openApiContract.request.headers
+        yamlContract.request.body == openApiContract.request.body
+        yamlContract.request.bodyMatchers == openApiContract.request.bodyMatchers
+        yamlContract.response.status == openApiContract.response.status
+        yamlContract.response.headers == openApiContract.response.headers
+        yamlContract.response.bodyMatchers == openApiContract.response.bodyMatchers
+        yamlContract == openApiContract
 
     }
 }

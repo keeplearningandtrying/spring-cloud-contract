@@ -8,10 +8,11 @@ import org.springframework.cloud.contract.spec.Contract
 class DslContracts {
     static Contract shouldMarkClientAsFraud(){
         return Contract.make {
+            name = "1 - Should Mark Client As Fraud"
             request {
                 method 'PUT'
                 url '/fraudcheck'
-                body([ // (4)
+                body([
                        "client.id": $(regex('[0-9]{10}')),
                        loanAmount: 99999
                 ])

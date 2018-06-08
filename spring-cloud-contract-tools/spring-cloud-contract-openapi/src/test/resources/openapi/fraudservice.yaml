@@ -39,7 +39,7 @@ paths:
         x-contracts:
             - contractId: 1
               body:
-                clientId: 1234567890
+                "client.id" : 1452656883
                 loanAmount: 99999
               matchers:
                 body:
