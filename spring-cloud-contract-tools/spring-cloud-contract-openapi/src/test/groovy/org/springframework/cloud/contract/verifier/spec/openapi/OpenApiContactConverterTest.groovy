@@ -69,7 +69,6 @@ class OpenApiContactConverterTest extends Specification {
 
         when:
 
-
         Contract openApiContract = oa3Contract.find { it.name.equalsIgnoreCase("some name") }
 
         then:

@@ -21,6 +21,8 @@ import static org.apache.commons.lang3.StringUtils.isNumeric
 @Slf4j
 class OpenApiContractConverter implements ContractConverter<Collection<PathItem>> {
 
+    public static final OpenApiContractConverter INSTANCE = new OpenApiContractConverter()
+
     @Override
     boolean isAccepted(File file) {
         try {
@@ -274,6 +276,7 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
         return sccContracts
     }
 
+    //todo - extend from yaml converter?
     protected Pattern predefinedToPattern(YamlContract.PredefinedRegex predefinedRegex) {
         RegexPatterns patterns = new RegexPatterns()
         switch (predefinedRegex) {
@@ -310,6 +313,7 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
         }
     }
 
+    //todo - extend from yaml converter?
     protected Object serverValue(Object value, def matcher, String key) {
         Object serverValue = value
         if (matcher?.regex) {
@@ -326,6 +330,7 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
         return serverValue
     }
 
+    //todo - extend from yaml converter?
     protected Object serverCookieValue(Object value, def matcher, String key) {
         Object serverValue = value
         if (matcher?.regex) {
@@ -340,6 +345,7 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
         return serverValue
     }
 
+    //todo - extend from yaml converter?
     protected Object clientValue(Object value, YamlContract.KeyValueMatcher matcher, String key) {
         Object clientValue = value
         if (matcher?.regex) {
@@ -354,6 +360,7 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
         return clientValue
     }
 
+    //todo - extend from yaml converter?
     private void assertPatternMatched(Pattern pattern, value, String key) {
         boolean matches = pattern.matcher(value.toString()).matches()
         if (!matches) throw new IllegalStateException("Broken headers! A header with " +

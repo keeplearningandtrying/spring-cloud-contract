@@ -16,39 +16,30 @@
 
 package org.springframework.cloud.contract.verifier.converter
 
-import java.nio.file.Files
-import java.util.regex.Pattern
-
 import com.fasterxml.jackson.databind.ObjectMapper
 import groovy.transform.CompileStatic
-import org.yaml.snakeyaml.Yaml
-
 import org.springframework.cloud.contract.spec.Contract
 import org.springframework.cloud.contract.spec.ContractConverter
-import org.springframework.cloud.contract.spec.internal.BodyMatcher
-import org.springframework.cloud.contract.spec.internal.Cookies
-import org.springframework.cloud.contract.spec.internal.DslProperty
-import org.springframework.cloud.contract.spec.internal.ExecutionProperty
-import org.springframework.cloud.contract.spec.internal.Headers
-import org.springframework.cloud.contract.spec.internal.MatchingType
-import org.springframework.cloud.contract.spec.internal.MatchingTypeValue
-import org.springframework.cloud.contract.spec.internal.NamedProperty
-import org.springframework.cloud.contract.spec.internal.RegexPatterns
+import org.springframework.cloud.contract.spec.internal.*
 import org.springframework.cloud.contract.verifier.converter.YamlContract.BodyStubMatcher
 import org.springframework.cloud.contract.verifier.converter.YamlContract.BodyTestMatcher
 import org.springframework.cloud.contract.verifier.converter.YamlContract.Input
+import org.springframework.cloud.contract.verifier.converter.YamlContract.KeyValueMatcher
 import org.springframework.cloud.contract.verifier.converter.YamlContract.Named
 import org.springframework.cloud.contract.verifier.converter.YamlContract.OutputMessage
 import org.springframework.cloud.contract.verifier.converter.YamlContract.PredefinedRegex
 import org.springframework.cloud.contract.verifier.converter.YamlContract.Request
 import org.springframework.cloud.contract.verifier.converter.YamlContract.Response
-import org.springframework.cloud.contract.verifier.converter.YamlContract.KeyValueMatcher
 import org.springframework.cloud.contract.verifier.converter.YamlContract.StubMatcherType
 import org.springframework.cloud.contract.verifier.converter.YamlContract.StubMatchers
-import org.springframework.cloud.contract.verifier.converter.YamlContract.TestHeaderMatcher
 import org.springframework.cloud.contract.verifier.converter.YamlContract.TestCookieMatcher
+import org.springframework.cloud.contract.verifier.converter.YamlContract.TestHeaderMatcher
 import org.springframework.cloud.contract.verifier.converter.YamlContract.TestMatcherType
 import org.springframework.cloud.contract.verifier.util.MapConverter
+import org.yaml.snakeyaml.Yaml
+
+import java.nio.file.Files
+import java.util.regex.Pattern
 
 /**
  * Simple converter from and to a {@link YamlContract} to a collection of {@link Contract}
@@ -65,7 +56,30 @@ class YamlContractConverter implements ContractConverter<List<YamlContract>> {
 	@Override
 	boolean isAccepted(File file) {
 		String name = file.getName()
-		return name.endsWith(".yml") || name.endsWith(".yaml")
+		Boolean canConvert =  name.endsWith(".yml") || name.endsWith(".yaml")
+
+		if (!canConvert) {
+			return canConvert
+		} else {
+			canConvert = false
+			ObjectMapper mapper = new ObjectMapper()
+
+			try {
+				new Yaml().loadAll(Files.newInputStream(file.toPath())).collect {
+					//verify yaml load's without errors
+					YamlContract yamlContract = mapper.convertValue(it, YamlContract.class)
+				}
+
+				canConvert = true
+
+			} catch (e){
+				println e.message
+				e.printStackTrace()
+				// do nothing, can't convert
+			}
+
+			return canConvert
+		}
 	}
 
 	@Override

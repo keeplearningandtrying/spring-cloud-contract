@@ -46,11 +46,11 @@
 				<artifactId>spring-cloud-contract-pact</artifactId>
 				<version>${project.version}</version>
 			</dependency>
-			<!--<dependency>-->
-				<!--<groupId>org.springframework.cloud</groupId>-->
-				<!--<artifactId>spring-cloud-contract-openapi</artifactId>-->
-				<!--<version>${project.version}</version>-->
-			<!--</dependency>-->
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-contract-openapi</artifactId>
+				<version>${project.version}</version>
+			</dependency>
 			<dependency>
 				<groupId>org.springframework.cloud</groupId>
 				<artifactId>spring-cloud-contract-stub-runner</artifactId>

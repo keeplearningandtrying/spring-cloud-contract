@@ -16,27 +16,24 @@
 
 package org.springframework.cloud.contract.stubrunner;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.FileVisitResult;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.SimpleFileVisitor;
-import java.nio.file.attribute.BasicFileAttributes;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.cloud.contract.spec.Contract;
 import org.springframework.cloud.contract.spec.ContractConverter;
 import org.springframework.cloud.contract.stubrunner.provider.wiremock.WireMockHttpServerStub;
 import org.springframework.cloud.contract.verifier.converter.YamlContractConverter;
+import org.springframework.cloud.contract.verifier.spec.openapi.OpenApiContractConverter;
 import org.springframework.cloud.contract.verifier.util.ContractVerifierDslConverter;
 import org.springframework.core.io.support.SpringFactoriesLoader;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Wraps the folder with stub mappings.
@@ -171,6 +168,8 @@ class StubRepository {
 											.addAll(ContractVerifierDslConverter.convertAsCollection(file.getParentFile(), file));
 								} else if (YamlContractConverter.INSTANCE.isAccepted(file)) {
 									contractDescriptors.addAll(YamlContractConverter.INSTANCE.convertFrom(file));
+								} else if (OpenApiContractConverter.INSTANCE.isAccepted(file)) {
+									contractDescriptors.addAll(OpenApiContractConverter.INSTANCE.convertFrom(file));
 								} else if (converter != null) {
 									contractDescriptors.addAll(converter.convertFrom(file));
 								}
