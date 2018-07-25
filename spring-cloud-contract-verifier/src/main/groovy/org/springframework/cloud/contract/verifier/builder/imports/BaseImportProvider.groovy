@@ -1,13 +1,9 @@
 package org.springframework.cloud.contract.verifier.builder.imports
 
 import groovy.transform.CompileStatic
-
 import org.springframework.cloud.contract.verifier.config.TestFramework
 
-import static org.springframework.cloud.contract.verifier.config.TestFramework.CUSTOM
-import static org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT
-import static org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
-import static org.springframework.cloud.contract.verifier.config.TestFramework.SPOCK
+import static org.springframework.cloud.contract.verifier.config.TestFramework.*
 
 /**
  * Provides imports based on test framework.

@@ -1,21 +1,17 @@
 package org.springframework.cloud.contract.verifier.messaging.amqp
 
 import org.mockito.exceptions.verification.WantedButNotInvoked
-import wiremock.com.google.common.collect.ImmutableMap
-import org.springframework.amqp.core.Binding
-import org.springframework.amqp.core.BindingBuilder
-import org.springframework.amqp.core.DirectExchange
-import org.springframework.amqp.core.Message
-import org.springframework.amqp.core.MessageProperties
-import org.springframework.amqp.core.Queue
+import org.springframework.amqp.core.*
 import org.springframework.amqp.rabbit.core.RabbitTemplate
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer
 import org.springframework.amqp.rabbit.listener.adapter.MessageListenerAdapter
 import spock.lang.Specification
+import wiremock.com.google.common.collect.ImmutableMap
 
 import static org.mockito.Mockito.mock
 import static org.springframework.amqp.core.MessageProperties.CONTENT_TYPE_JSON
 import static org.springframework.amqp.support.converter.DefaultClassMapper.DEFAULT_CLASSID_FIELD_NAME
+
 /**
  * @author Mathias Düsterhöft
  */

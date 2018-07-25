@@ -16,11 +16,7 @@
 
 package org.springframework.cloud.contract.verifier.config
 
-import org.springframework.cloud.contract.verifier.config.framework.CustomDefinition
-import org.springframework.cloud.contract.verifier.config.framework.JUnit5Definition
-import org.springframework.cloud.contract.verifier.config.framework.JUnitDefinition
-import org.springframework.cloud.contract.verifier.config.framework.SpockDefinition
-import org.springframework.cloud.contract.verifier.config.framework.TestFrameworkDefinition
+import org.springframework.cloud.contract.verifier.config.framework.*
 
 /**
  * Contains main building blocks for a test class for the given framework

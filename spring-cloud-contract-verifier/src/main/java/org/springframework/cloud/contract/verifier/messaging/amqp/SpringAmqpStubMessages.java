@@ -16,10 +16,6 @@
 
 package org.springframework.cloud.contract.verifier.messaging.amqp;
 
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.TimeUnit;
-
 import org.mockito.ArgumentCaptor;
 import org.mockito.ArgumentMatchers;
 import org.slf4j.Logger;
@@ -34,10 +30,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.contract.verifier.messaging.MessageVerifier;
 import org.springframework.util.Assert;
 
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
 import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.atLeastOnce;
-import static org.mockito.Mockito.mockingDetails;
-import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.*;
 import static org.springframework.amqp.support.converter.DefaultClassMapper.DEFAULT_CLASSID_FIELD_NAME;
 
 /**

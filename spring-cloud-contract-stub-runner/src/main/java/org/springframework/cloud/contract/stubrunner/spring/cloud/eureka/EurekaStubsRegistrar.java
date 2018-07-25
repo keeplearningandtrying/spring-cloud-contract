@@ -1,11 +1,9 @@
 package org.springframework.cloud.contract.stubrunner.spring.cloud.eureka;
 
-import java.lang.invoke.MethodHandles;
-import java.net.InetAddress;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
-
+import com.netflix.appinfo.ApplicationInfoManager;
+import com.netflix.appinfo.InstanceInfo;
+import com.netflix.discovery.AbstractDiscoveryClientOptionalArgs;
+import com.netflix.discovery.EurekaClient;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
@@ -23,10 +21,11 @@ import org.springframework.cloud.netflix.eureka.serviceregistry.EurekaRegistrati
 import org.springframework.context.ApplicationContext;
 import org.springframework.util.StringUtils;
 
-import com.netflix.appinfo.ApplicationInfoManager;
-import com.netflix.appinfo.InstanceInfo;
-import com.netflix.discovery.AbstractDiscoveryClientOptionalArgs;
-import com.netflix.discovery.EurekaClient;
+import java.lang.invoke.MethodHandles;
+import java.net.InetAddress;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Registers all stubs in Eureka Service Discovery

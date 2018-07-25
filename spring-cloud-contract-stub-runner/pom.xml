@@ -152,7 +152,7 @@
 			<artifactId>spring-cloud-starter-consul-discovery</artifactId>
 			<optional>true</optional>
 		</dependency>
-	</dependencies>
+    </dependencies>
 	<build>
 		<plugins>
 			<plugin>

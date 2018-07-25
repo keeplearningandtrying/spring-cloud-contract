@@ -16,19 +16,18 @@
 
 package org.springframework.cloud.contract.stubrunner;
 
-import java.io.File;
-import java.util.HashMap;
-
 import org.assertj.core.api.BDDAssertions;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ResetCommand;
 import org.eclipse.jgit.revwalk.RevCommit;
-import org.eclipse.jgit.transport.UsernamePasswordCredentialsProvider;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.springframework.boot.test.rule.OutputCapture;
 import org.springframework.cloud.contract.stubrunner.spring.StubRunnerProperties;
+
+import java.io.File;
+import java.util.HashMap;
 
 import static org.assertj.core.api.BDDAssertions.then;
 

@@ -16,10 +16,9 @@
 
 package org.springframework.cloud.contract.verifier
 
-import spock.lang.Specification
-
 import org.springframework.cloud.contract.verifier.builder.JavaTestGenerator
 import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties
+import spock.lang.Specification
 
 import static org.springframework.cloud.contract.verifier.config.TestFramework.SPOCK
 

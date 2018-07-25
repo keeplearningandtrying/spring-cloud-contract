@@ -16,13 +16,12 @@
 
 package org.springframework.cloud.contract.verifier.file
 
-import wiremock.com.google.common.collect.ListMultimap
-import spock.lang.Specification
-
-import java.nio.file.Path
-
 import org.springframework.cloud.contract.spec.Contract
 import org.springframework.cloud.contract.spec.ContractConverter
+import spock.lang.Specification
+import wiremock.com.google.common.collect.ListMultimap
+
+import java.nio.file.Path
 
 /**
  * @author Jakub Kubrynski, codearte.io

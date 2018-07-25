@@ -23,9 +23,9 @@ import org.springframework.cloud.contract.spec.util.RegexpUtils
 
 import java.util.regex.Pattern
 
-import static org.apache.commons.text.StringEscapeUtils.escapeJson
-import static ContentType.*
 import static ContentUtils.extractValue
+import static org.apache.commons.text.StringEscapeUtils.escapeJson
+import static org.springframework.cloud.contract.verifier.util.ContentType.JSON
 
 /**
  * Useful utility methods to work with regular expressions

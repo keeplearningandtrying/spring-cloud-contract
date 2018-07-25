@@ -172,8 +172,6 @@ class StubRepository {
 									contractDescriptors.addAll(YamlContractConverter.INSTANCE.convertFrom(file));
 								} else if (OpenApiContractConverter.INSTANCE.isAccepted(file)) {
 									contractDescriptors.addAll(OpenApiContractConverter.INSTANCE.convertFrom(file));
-								} else if (converter != null) {
-									contractDescriptors.addAll(converter.convertFrom(file));
 								}
 							}
 							return super.visitFile(path, attrs);

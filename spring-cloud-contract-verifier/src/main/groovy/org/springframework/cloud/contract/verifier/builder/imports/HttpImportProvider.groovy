@@ -3,13 +3,8 @@ package org.springframework.cloud.contract.verifier.builder.imports
 import org.springframework.cloud.contract.verifier.config.TestFramework
 import org.springframework.cloud.contract.verifier.config.TestMode
 
-import static org.springframework.cloud.contract.verifier.config.TestFramework.CUSTOM
-import static org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT
-import static org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
-import static org.springframework.cloud.contract.verifier.config.TestFramework.SPOCK
-import static org.springframework.cloud.contract.verifier.config.TestMode.EXPLICIT
-import static org.springframework.cloud.contract.verifier.config.TestMode.JAXRSCLIENT
-import static org.springframework.cloud.contract.verifier.config.TestMode.MOCKMVC
+import static org.springframework.cloud.contract.verifier.config.TestFramework.*
+import static org.springframework.cloud.contract.verifier.config.TestMode.*
 
 /**
  * Provides imports based on test framework and test mode.

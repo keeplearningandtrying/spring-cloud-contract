@@ -16,21 +16,15 @@
 
 package org.springframework.cloud.contract.verifier.builder
 
-import java.util.regex.Pattern
-
 import groovy.json.StringEscapeUtils
 import groovy.transform.PackageScope
 import groovy.transform.TypeChecked
-
 import org.springframework.cloud.contract.spec.Contract
-import org.springframework.cloud.contract.spec.internal.Cookie
-import org.springframework.cloud.contract.spec.internal.ExecutionProperty
-import org.springframework.cloud.contract.spec.internal.Header
-import org.springframework.cloud.contract.spec.internal.Input
-import org.springframework.cloud.contract.spec.internal.NamedProperty
-import org.springframework.cloud.contract.spec.internal.NotToEscapePattern
+import org.springframework.cloud.contract.spec.internal.*
 import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties
 import org.springframework.cloud.contract.verifier.util.MapConverter
+
+import java.util.regex.Pattern
 
 import static groovy.json.StringEscapeUtils.escapeJava
 import static org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT

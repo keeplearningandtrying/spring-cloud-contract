@@ -16,8 +16,6 @@
 
 package org.springframework.cloud.contract.verifier.file
 
-import wiremock.com.google.common.collect.ArrayListMultimap
-import wiremock.com.google.common.collect.ListMultimap
 import groovy.transform.CompileStatic
 import groovy.util.logging.Slf4j
 import org.springframework.cloud.contract.spec.Contract
@@ -25,12 +23,15 @@ import org.springframework.cloud.contract.spec.ContractConverter
 import org.springframework.cloud.contract.verifier.converter.YamlContractConverter
 import org.springframework.cloud.contract.verifier.util.ContractVerifierDslConverter
 import org.springframework.core.io.support.SpringFactoriesLoader
+import wiremock.com.google.common.collect.ArrayListMultimap
+import wiremock.com.google.common.collect.ListMultimap
 
 import java.nio.file.FileSystem
 import java.nio.file.FileSystems
 import java.nio.file.Path
 import java.nio.file.PathMatcher
 import java.util.regex.Pattern
+
 /**
  * Scans the provided file path for the DSLs. There's a possibility to provide
  * inclusion and exclusion filters.

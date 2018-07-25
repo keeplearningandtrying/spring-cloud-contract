@@ -18,9 +18,6 @@ package org.springframework.cloud.contract.verifier.builder
 
 import org.junit.Rule
 import org.junit.rules.TemporaryFolder
-import spock.lang.Issue
-import spock.lang.Specification
-
 import org.springframework.cloud.contract.verifier.TestGenerator
 import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties
 import org.springframework.cloud.contract.verifier.config.TestFramework
@@ -28,13 +25,11 @@ import org.springframework.cloud.contract.verifier.config.TestMode
 import org.springframework.cloud.contract.verifier.file.ContractMetadata
 import org.springframework.cloud.contract.verifier.util.SyntaxChecker
 import org.springframework.util.StringUtils
+import spock.lang.Issue
+import spock.lang.Specification
 
-import static org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT
-import static org.springframework.cloud.contract.verifier.config.TestFramework.JUNIT5
-import static org.springframework.cloud.contract.verifier.config.TestFramework.SPOCK
-import static org.springframework.cloud.contract.verifier.config.TestMode.EXPLICIT
-import static org.springframework.cloud.contract.verifier.config.TestMode.JAXRSCLIENT
-import static org.springframework.cloud.contract.verifier.config.TestMode.MOCKMVC
+import static org.springframework.cloud.contract.verifier.config.TestFramework.*
+import static org.springframework.cloud.contract.verifier.config.TestMode.*
 import static org.springframework.cloud.contract.verifier.util.ContractVerifierDslConverter.convertAsCollection
 
 class SingleTestGeneratorSpec extends Specification {

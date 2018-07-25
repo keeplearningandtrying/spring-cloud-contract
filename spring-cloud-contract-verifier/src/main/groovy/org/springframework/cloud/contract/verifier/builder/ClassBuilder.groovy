@@ -18,7 +18,6 @@ package org.springframework.cloud.contract.verifier.builder
 
 import groovy.transform.CompileStatic
 import groovy.transform.PackageScope
-
 import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties
 import org.springframework.cloud.contract.verifier.config.TestFramework
 import org.springframework.cloud.contract.verifier.util.NamesUtil

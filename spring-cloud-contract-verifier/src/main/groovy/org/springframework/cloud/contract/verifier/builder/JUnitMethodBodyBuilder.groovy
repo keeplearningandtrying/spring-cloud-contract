@@ -20,11 +20,7 @@ import groovy.json.StringEscapeUtils
 import groovy.transform.PackageScope
 import groovy.transform.TypeChecked
 import org.springframework.cloud.contract.spec.Contract
-import org.springframework.cloud.contract.spec.internal.Cookie
-import org.springframework.cloud.contract.spec.internal.ExecutionProperty
-import org.springframework.cloud.contract.spec.internal.Header
-import org.springframework.cloud.contract.spec.internal.NamedProperty
-import org.springframework.cloud.contract.spec.internal.Request
+import org.springframework.cloud.contract.spec.internal.*
 import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties
 import org.springframework.cloud.contract.verifier.util.RegexpBuilders
 

@@ -16,23 +16,20 @@
 
 package org.springframework.cloud.contract.verifier.builder
 
-import java.lang.invoke.MethodHandles
-
 import groovy.transform.Canonical
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.PackageScope
 import org.apache.commons.logging.Log
 import org.apache.commons.logging.LogFactory
-
 import org.springframework.cloud.contract.spec.Contract
 import org.springframework.cloud.contract.verifier.builder.imports.HttpImportProvider
 import org.springframework.cloud.contract.verifier.builder.imports.MessagingImportProvider
 import org.springframework.cloud.contract.verifier.config.ContractVerifierConfigProperties
 import org.springframework.cloud.contract.verifier.file.ContractMetadata
 
-import static org.springframework.cloud.contract.verifier.builder.imports.BaseImportProvider.getImports
-import static org.springframework.cloud.contract.verifier.builder.imports.BaseImportProvider.getRuleImport
-import static org.springframework.cloud.contract.verifier.builder.imports.BaseImportProvider.getStaticImports
+import java.lang.invoke.MethodHandles
+
+import static org.springframework.cloud.contract.verifier.builder.imports.BaseImportProvider.*
 import static org.springframework.cloud.contract.verifier.util.NamesUtil.capitalize
 
 /**
