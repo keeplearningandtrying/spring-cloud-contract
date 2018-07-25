@@ -2,6 +2,7 @@ package org.springframework.cloud.contract.verifier.spec.openapi
 
 import groovy.util.logging.Slf4j
 import io.swagger.oas.models.PathItem
+import io.swagger.oas.models.media.MediaType
 import io.swagger.parser.v3.OpenAPIV3Parser
 import org.springframework.cloud.contract.spec.Contract
 import org.springframework.cloud.contract.spec.ContractConverter
@@ -133,6 +134,12 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
                                                 }
                                             }
 
+                                            if(operation?.requestBody?.content){
+                                                LinkedHashMap<String, MediaType> content = operation?.requestBody?.content
+
+                                                //todo - not sure if there is a use case for more than one map entry here
+                                                header("Content-Type", content.entrySet().getAt(0).key)
+                                            }
                                         }
 
                                         if (operation?.requestBody?.extensions?."x-contracts") {
@@ -155,7 +162,8 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
                                                                 case 'by_regex':
                                                                     String regex = matcher.value
                                                                     if (matcher.predefined) {
-                                                                        regex = predefinedToPattern(matcher.predefined).pattern()
+                                                                        YamlContract.PredefinedRegex  pdRegx = YamlContract.PredefinedRegex.valueOf(matcher.predefined)
+                                                                        regex = predefinedToPattern(pdRegx).pattern()
                                                                     }
                                                                     value = byRegex(regex)
                                                                     break
@@ -191,10 +199,9 @@ class OpenApiContractConverter implements ContractConverter<Collection<PathItem>
                                                                 }
 
                                                                 headers {
-                                                                    header('Content-Type', contentTypeSB.toString())
 
                                                                     responseContract.headers.each { String headerKey, Object headerValue ->
-                                                                        def matcher = responseContract.matchers.headers.find { it.key == headerKey }
+                                                                        def matcher = responseContract?.matchers?.headers?.find { it.key == headerKey }
                                                                         if (headerValue instanceof List) {
                                                                             ((List) headerValue).each {
                                                                                 Object serverValue = serverValue(it, matcher, headerKey)

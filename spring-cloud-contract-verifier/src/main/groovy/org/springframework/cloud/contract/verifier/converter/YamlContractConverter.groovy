@@ -62,9 +62,10 @@ class YamlContractConverter implements ContractConverter<List<YamlContract>> {
 			return canConvert
 		} else {
 			canConvert = false
-			ObjectMapper mapper = new ObjectMapper()
 
 			try {
+				ObjectMapper mapper = new ObjectMapper()
+
 				new Yaml().loadAll(Files.newInputStream(file.toPath())).collect {
 					//verify yaml load's without errors
 					YamlContract yamlContract = mapper.convertValue(it, YamlContract.class)
@@ -72,9 +73,8 @@ class YamlContractConverter implements ContractConverter<List<YamlContract>> {
 
 				canConvert = true
 
-			} catch (e){
-				println e.message
-				e.printStackTrace()
+			} catch (Throwable t){
+
 				// do nothing, can't convert
 			}
 

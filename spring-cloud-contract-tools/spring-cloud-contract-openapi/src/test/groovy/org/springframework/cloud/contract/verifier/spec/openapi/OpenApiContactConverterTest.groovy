@@ -14,6 +14,9 @@ class OpenApiContactConverterTest extends Specification {
     URL contractOA3Url = OpenApiContactConverterTest.getResource("/yml/contract_OA3.yml")
     File contractOA3File = new File(contractOA3Url.toURI())
 
+    URL fruadApiUrl = OpenApiContactConverterTest.getResource("/openapi/openapi.yml")
+    File fraudApiFile = new File(fruadApiUrl.toURI())
+
     OpenApiContractConverter contactConverter
     YamlContractConverter yamlContractConverter
 
@@ -24,14 +27,24 @@ class OpenApiContactConverterTest extends Specification {
 
     def "IsAccepted True"() {
         given:
-        File file = new File('src/test/resources/openapi/openapi.yaml')
+        File file = new File('src/test/resources/openapi/openapi_petstore.yaml')
         when:
 
         def result = contactConverter.isAccepted(file)
 
         then:
         result
+    }
 
+    def "IsAccepted True 2"() {
+        given:
+        File file = new File('src/test/resources/openapi/openapi.yml')
+        when:
+
+        def result = contactConverter.isAccepted(file)
+
+        then:
+        result
     }
 
     def "IsAccepted False"() {
@@ -83,6 +96,19 @@ class OpenApiContactConverterTest extends Specification {
         yamlContract.response.headers == openApiContract.response.headers
         yamlContract.response.bodyMatchers == openApiContract.response.bodyMatchers
         yamlContract == openApiContract
+
+    }
+
+    def "test OA3 Fraud Yml"() {
+        given:
+        Collection<Contract> oa3Contract = contactConverter.convertFrom(fraudApiFile)
+
+        when:
+        Contract contract = oa3Contract.getAt(0)
+
+        then:
+        contract
+        oa3Contract.size() == 6
 
     }
 }
